@@ -1,3 +1,4 @@
+
 <?php
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -68,28 +69,12 @@ function verify_csrf_token($token) {
     return $valid;
 }
 
-<<<<<<< HEAD
-/**
- * @return string
- */
-=======
->>>>>>> be3de4da96a05dd7abeb1eee644620f22da6a6bf
 function csrf_input_field() {
     return '<input type="hidden" name="csrf_token" value="' . htmlspecialchars(generate_csrf_token()) . '">';
 }
 
-<<<<<<< HEAD
-/**
- 
- * @param string 
- * @return string 
- */
-function sanitize_input($data) {
-   
-=======
 function sanitize_input($data) {
     
->>>>>>> be3de4da96a05dd7abeb1eee644620f22da6a6bf
     return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
 }
 ?>
