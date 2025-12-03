@@ -1,12 +1,4 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Hôte : localhost:8889
--- Généré le : mar. 02 déc. 2025 à 15:36
--- Version du serveur : 8.0.40
--- Version de PHP : 8.3.14
-
+-- phpMyAdmin SQL AVEC MAMP
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
