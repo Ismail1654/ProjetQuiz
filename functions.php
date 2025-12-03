@@ -1,4 +1,3 @@
-
 <?php
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -8,14 +7,18 @@ if (session_status() === PHP_SESSION_NONE) {
 function is_logged_in() {
     return isset($_SESSION['user_id']);
 }
+
+
 function is_admin() {
     return is_logged_in() && ($_SESSION['role'] ?? '') === 'admin';
 }
+
 
 function redirect($location) {
     header("Location: $location");
     exit();
 }
+
 
 function require_auth() {
     if (!is_logged_in()) {
