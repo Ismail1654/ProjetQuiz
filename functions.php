@@ -124,25 +124,19 @@ function verify_csrf_token($token) {
 }
 
 /**
- * Retourne le champ input caché contenant le token CSRF.
  * @return string
  */
 function csrf_input_field() {
     return '<input type="hidden" name="csrf_token" value="' . htmlspecialchars(generate_csrf_token()) . '">';
 }
 
-
-// =================================
-// FONCTIONS UTILITAIRES
-// =================================
-
 /**
- * Fonction pour sécuriser et nettoyer une chaîne de caractères (XSS).
- * @param string $data La donnée à nettoyer.
- * @return string La donnée nettoyée.
+ 
+ * @param string 
+ * @return string 
  */
 function sanitize_input($data) {
-    // trim: enlève les espaces. htmlspecialchars: empêche les injections HTML (XSS).
+   
     return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
 }
 ?>
