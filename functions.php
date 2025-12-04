@@ -35,17 +35,20 @@ function logout() {
     redirect('login.php');
 }
 
+
 function generate_captcha() {
-    $n1 = rand(1,9);
-    $n2 = rand(1,9);
+    $n1 = rand(1, 9);
+    $n2 = rand(1, 9);
 
     $_SESSION['captcha_result'] = $n1 + $n2;
+    $_SESSION['captcha_operation_display'] = "$n1 + $n2"; 
     return "$n1 + $n2";
 }
 
 function verify_captcha($answer) {
     if (isset($_SESSION['captcha_result']) && (int)$answer === $_SESSION['captcha_result']) {
         unset($_SESSION['captcha_result']);
+        unset($_SESSION['captcha_operation_display']); 
         return true;
     }
     return false;
@@ -71,6 +74,7 @@ function csrf_input_field() {
     return '<input type="hidden" name="csrf_token" value="' . 
             htmlspecialchars(generate_csrf_token()) . '">';
 }
+
 
 function sanitize_input($data) {
     return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
