@@ -1,5 +1,5 @@
 <?php
-// quiz_list.php - Liste des quiz disponibles pour les utilisateurs - SIMPLIFIÉ
+
 require_once 'config.php';
 require_once 'functions.php';
 require_auth();
@@ -8,15 +8,14 @@ $role = $_SESSION['role'];
 $error = '';
 $quizzes = [];
 
-// Rediriger les rôles non-utilisateur vers le dashboard (ceci est un choix de design)
+
+
 if ($role !== 'utilisateur') {
     redirect('dashboard.php');
 }
 
 try {
     $pdo = connectDB();
-    
-    // Récupérer UNIQUEMENT les quiz actifs et avec des questions
     $sql = "
         SELECT 
             q.quiz_id, 
