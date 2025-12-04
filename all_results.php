@@ -41,6 +41,8 @@ try {
     $error = "Erreur lors du chargement des résultats : " . $e->getMessage();
 }
  
+
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
