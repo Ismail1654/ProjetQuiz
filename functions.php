@@ -8,17 +8,14 @@ function is_logged_in() {
     return isset($_SESSION['user_id']);
 }
 
-
 function is_admin() {
     return is_logged_in() && ($_SESSION['role'] ?? '') === 'admin';
 }
-
 
 function redirect($location) {
     header("Location: $location");
     exit();
 }
-
 
 function require_auth() {
     if (!is_logged_in()) {
@@ -28,27 +25,27 @@ function require_auth() {
 
 function require_admin() {
     if (!is_admin()) {
-        redirect('dashboard.php'); 
+        redirect('dashboard.php');
     }
 }
 
 function logout() {
-    $_SESSION = array();
+    $_SESSION = [];
     session_destroy();
     redirect('login.php');
 }
 
 function generate_captcha() {
-    $num1 = rand(1, 9);
-    $num2 = rand(1, 9);
-    $_SESSION['captcha_result'] = $num1 + $num2; 
-    $_SESSION['captcha_operation_display'] = "$num1 + $num2";
-    return $_SESSION['captcha_operation_display'];
+    $n1 = rand(1,9);
+    $n2 = rand(1,9);
+
+    $_SESSION['captcha_result'] = $n1 + $n2;
+    return "$n1 + $n2";
 }
 
-function verify_captcha($user_answer) {
-    if (isset($_SESSION['captcha_result']) && (int)$user_answer === $_SESSION['captcha_result']) {
-        unset($_SESSION['captcha_result']); 
+function verify_captcha($answer) {
+    if (isset($_SESSION['captcha_result']) && (int)$answer === $_SESSION['captcha_result']) {
+        unset($_SESSION['captcha_result']);
         return true;
     }
     return false;
@@ -56,28 +53,26 @@ function verify_captcha($user_answer) {
 
 function generate_csrf_token() {
     if (empty($_SESSION['csrf_token'])) {
-        $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); 
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
     }
     return $_SESSION['csrf_token'];
 }
 
 function verify_csrf_token($token) {
-    if (empty($token) || empty($_SESSION['csrf_token'])) {
-        return false;
-    }
-    $valid = hash_equals($_SESSION['csrf_token'], $token); 
-    if ($valid) {
-        unset($_SESSION['csrf_token']);
-    }
+    if (empty($token) || empty($_SESSION['csrf_token'])) return false;
+
+    $valid = hash_equals($_SESSION['csrf_token'], $token);
+    if ($valid) unset($_SESSION['csrf_token']);
+
     return $valid;
 }
 
 function csrf_input_field() {
-    return '<input type="hidden" name="csrf_token" value="' . htmlspecialchars(generate_csrf_token()) . '">';
+    return '<input type="hidden" name="csrf_token" value="' . 
+            htmlspecialchars(generate_csrf_token()) . '">';
 }
 
 function sanitize_input($data) {
-    
     return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
 }
 ?>
