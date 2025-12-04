@@ -167,7 +167,7 @@ try {
 
                                      <a href="create_quiz.php?edit_id=<?= $quiz['quiz_id'] ?>"
                                          class="button secondary-action secondary-bg">
-                                Modifier les Détails
+                                Modifier
                             </a>
 
                             <?php if ($role === 'admin' || $quiz['author_id'] == $user_id): ?>
