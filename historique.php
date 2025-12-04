@@ -42,7 +42,7 @@ try {
     $where_clauses = [];
     $params = [];
     
-    // Si l'utilisateur est un utilisateur simple, on filtre ses résultats
+    
     if ($role === 'utilisateur') {
         $where_clauses[] = "r.user_id = ?";
         $params[] = $user_id;
