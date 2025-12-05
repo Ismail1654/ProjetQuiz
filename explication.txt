@@ -1,0 +1,15 @@
+Explication courte du site
+
+Ce site est une petite application PHP permettant de créer, gérer et passer des quiz. Les utilisateurs peuvent s'inscrire et se connecter. Les rôles (utilisateur, école, entreprise, admin) déterminent les droits :
+- Les écoles/entreprises et l'administrateur peuvent créer des quiz et ajouter/éditer des questions.
+- Les utilisateurs peuvent consulter la liste des quiz, les passer et voir leurs résultats.
+
+Résumé d'utilisation
+- S'inscrire via `register.php` et se connecter via `login.php`.
+- Créer un quiz depuis le tableau de bord si vous avez les droits.
+- Ajouter des questions.
+- Les utilisateurs répondent aux quiz et obtiennent un score enregistré et peuvent les visionner.
+
+Sécurité
+- Les mots de passe sont hachés grace a la fonction password_hash.
+
